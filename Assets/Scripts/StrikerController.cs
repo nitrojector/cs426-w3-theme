@@ -7,7 +7,8 @@ public class StrikerController : MonoBehaviour
 
     private Vector3 _initialPosition;
 
-    InputAction mvmtAction;
+    InputAction firstHalfAction;
+    InputAction secondHalfAction;
 
     private float _position = 0.0f;
     private float _targetPosition = 0.0f;
@@ -16,6 +17,8 @@ public class StrikerController : MonoBehaviour
 
     [SerializeField] private GameObject targetBall = null;
     private Rigidbody _ballRb = null;
+
+    private Material _material;
 
     private void Awake()
     {
@@ -30,10 +33,13 @@ public class StrikerController : MonoBehaviour
 
         _initialPosition = transform.position;
 
-        mvmtAction = InputSystem.actions.FindAction("MoveArrow");
+        firstHalfAction = InputSystem.actions.FindAction("MoveArrow");
+        secondHalfAction = InputSystem.actions.FindAction("MoveWASD");
         _position = transform.position.x;
         _targetPosition = _position;
         _ballRb = targetBall.GetComponent<Rigidbody>();
+
+        _material = GetComponent<Renderer>().material;
     }
 
     private void Start()
@@ -46,6 +52,8 @@ public class StrikerController : MonoBehaviour
         _position = Mathf.Lerp(_position, _targetPosition, 16.0f * Time.deltaTime);
         transform.position = new Vector3(_position, transform.position.y, transform.position.z);
 
+        _material.color = !GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
+
         ProcessInput();
 
         if (_holdingBall)
@@ -56,7 +64,8 @@ public class StrikerController : MonoBehaviour
 
     private void ProcessInput()
     {
-        Vector2 moveRaw = mvmtAction.ReadValue<Vector2>();
+        Vector2 moveRaw = (GameManager.Instance.GameState.FirstHalf ? firstHalfAction : secondHalfAction)
+            .ReadValue<Vector2>();
         float horMove = moveRaw.x;
         if (moveRaw != Vector2.zero)
         {
@@ -69,8 +78,9 @@ public class StrikerController : MonoBehaviour
         }
         else
         {
-            float mindControllForce = 500.0f;
-            _ballRb.AddForce(Vector3.right * mindControllForce * horMove * Time.deltaTime);
+            float mindControlForce = 500.0f;
+
+            _ballRb.AddForce(Vector3.right * mindControlForce * horMove * Time.deltaTime);
             // TODO: maybe lerp x-position instead of using force
         }
 
@@ -96,6 +106,9 @@ public class StrikerController : MonoBehaviour
 
     public void ResetBallToStriker()
     {
+        _ballRb.angularVelocity = Vector3.zero;
+        _ballRb.linearVelocity = Vector3.zero;
+        _ballRb.rotation = Quaternion.identity;
         _holdingBall = true;
     }
 }

@@ -1,16 +1,15 @@
-﻿namespace DefaultNamespace
+﻿public class GameState
 {
-    public class GameState
-    {
-        public float TimeElapsed;
-        public int ScoreGoalie;
-        public int ScoreStriker;
+    public bool FirstHalf;
+    public float TimeElapsed;
+    public int ScoreBlue;
+    public int ScoreYellow;
 
-        public void Reset()
-        {
-            TimeElapsed = 0f;
-            ScoreGoalie = 0;
-            ScoreStriker = 0;
-        }
+    public void Reset()
+    {
+        FirstHalf = true;
+        TimeElapsed = 0f;
+        ScoreBlue = 0;
+        ScoreYellow = 0;
     }
 }

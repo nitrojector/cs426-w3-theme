@@ -4,7 +4,7 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     private Collider coll = null;
-    
+
     void Start()
     {
         coll = GetComponent<Collider>();
@@ -12,14 +12,16 @@ public class Goal : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            Debug.Log("Goal");
+            if (GameManager.Instance.GameState.FirstHalf)
+                GameManager.Instance.ScoreBlue();
+            else
+                GameManager.Instance.ScoreYellow();
         }
     }
 }

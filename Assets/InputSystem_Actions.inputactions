@@ -113,6 +113,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleHalf",
+                    "type": "Button",
+                    "id": "dd207f8e-9dee-47e0-9638-5a602fc37937",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -564,6 +573,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67632656-ab14-47bc-9783-26a0ce3ea7a9",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleHalf",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
