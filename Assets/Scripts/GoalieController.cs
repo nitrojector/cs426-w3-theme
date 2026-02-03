@@ -8,8 +8,6 @@ public class GoalieController : MonoBehaviour
     InputAction firstHalfAction;
     InputAction secondHalfAction;
 
-    private Vector3 _initialPosition;
-
     private float _position = 0.0f;
     private float _targetPosition = 0.0f;
 
@@ -28,7 +26,6 @@ public class GoalieController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _initialPosition = transform.position;
         _material = GetComponent<Renderer>().material;
     }
 
@@ -43,7 +40,7 @@ public class GoalieController : MonoBehaviour
     private void Update()
     {
         _material.color = GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
-        
+
         Vector2 moveRaw = (GameManager.Instance.GameState.FirstHalf ? firstHalfAction : secondHalfAction)
             .ReadValue<Vector2>();
         float horMove = moveRaw.x;
@@ -51,7 +48,7 @@ public class GoalieController : MonoBehaviour
         {
             Debug.Log("Move Input: " + moveRaw);
         }
-        
+
         if (!GameManager.Instance.RoundStarted || GameManager.Instance.GameState.RoundEnd)
             return;
 
@@ -63,8 +60,7 @@ public class GoalieController : MonoBehaviour
 
     public void ResetState()
     {
-        transform.position = _initialPosition;
-        _position = transform.position.x;
+        _position = 0.0f;
         _targetPosition = _position;
         _abilityCooldown = 0.0f;
     }
