@@ -1,15 +1,30 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/styles.uss?fileID=7433441132597879392&amp;guid=d5f9517032bf24046ade95d5c90484c0&amp;type=3#styles" />
+    <ui:VisualElement style="flex-grow: 1; position: absolute; top: 50%; left: 50%; translate: -50% -50%;">
+        <ui:Label text="Blue Wins!!" name="win-text" style="display: flex; font-size: 50px; -unity-font-style: bold; background-color: rgb(149, 149, 149); padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;" />
+    </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-direction: column;">
-        <ui:VisualElement name="blue-container" style="flex-grow: 0; flex-shrink: 1; height: 60px; flex-direction: row; align-items: center; width: 500px; background-color: rgb(152, 152, 152); padding-top: 3px; padding-right: 5px; padding-bottom: 3px; padding-left: 5px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; margin-bottom: 10px; margin-top: 10px; margin-right: 10px; margin-left: 10px;">
+        <ui:VisualElement name="blue-container" style="flex-grow: 0; flex-shrink: 1; height: 60px; flex-direction: row; align-items: center; width: 370px; background-color: rgb(152, 152, 152); padding-top: 3px; padding-right: 5px; padding-bottom: 3px; padding-left: 5px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; margin-bottom: 10px; margin-top: 10px; margin-right: 10px; margin-left: 10px;">
             <ui:Label text="Blue" style="font-size: 30px; -unity-text-align: upper-center; align-items: center; -unity-font-style: bold; width: 120px;" />
             <ui:Label text="5" name="blue-score" style="font-size: 30px; -unity-text-align: upper-center; align-items: center; -unity-font-style: bold; color: rgb(67, 45, 202);" />
-            <ui:VisualElement name="blue-scorebox" style="flex-grow: 1; flex-direction: row;" />
+            <ui:VisualElement name="blue-scorebox" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="b-0" class="circle-empty" />
+                <ui:VisualElement name="b-1" class="circle-empty" />
+                <ui:VisualElement name="b-2" class="circle-empty" />
+                <ui:VisualElement name="b-3" class="circle-empty" style="display: flex;" />
+                <ui:VisualElement name="b-4" class="circle-empty" style="display: flex;" />
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="yellow-container" style="flex-grow: 0; flex-shrink: 1; height: 60px; flex-direction: row; align-items: center; width: 500px; background-color: rgb(152, 152, 152); padding-top: 3px; padding-right: 5px; padding-bottom: 3px; padding-left: 5px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
-            <ui:Label text="Yellow" style="font-size: 30px; -unity-text-align: upper-center; align-items: center; -unity-font-style: bold; width: 120px;" />
+        <ui:VisualElement name="yellow-container" style="flex-grow: 0; flex-shrink: 1; height: 60px; flex-direction: row; align-items: center; width: 370px; background-color: rgb(152, 152, 152); padding-top: 3px; padding-right: 5px; padding-bottom: 3px; padding-left: 5px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+            <ui:Label text="Yellow" style="-unity-text-align: upper-center; align-items: center; -unity-font-style: bold; width: 120px; font-size: 30px;" />
             <ui:Label text="5" name="yellow-score" style="font-size: 30px; -unity-text-align: upper-center; align-items: center; -unity-font-style: bold; color: rgb(67, 45, 202);" />
-            <ui:VisualElement name="yellow-scorebox" style="flex-grow: 1; flex-direction: row;" />
+            <ui:VisualElement name="yellow-scorebox" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="y-0" class="circle-empty" />
+                <ui:VisualElement name="y-1" class="circle-empty" />
+                <ui:VisualElement name="y-2" class="circle-empty" />
+                <ui:VisualElement name="y-3" class="circle-empty" style="display: flex;" />
+                <ui:VisualElement name="y-4" class="circle-empty" style="display: flex;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

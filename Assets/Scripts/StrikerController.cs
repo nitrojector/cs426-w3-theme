@@ -48,11 +48,11 @@ public class StrikerController : MonoBehaviour
 
     private void Update()
     {
+        _material.color = !GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
+        
         _targetPosition = Mathf.Clamp(_targetPosition, -Constants.PLAYER_HOR_MAX, Constants.PLAYER_HOR_MAX);
         _position = Mathf.Lerp(_position, _targetPosition, 16.0f * Time.deltaTime);
         transform.position = new Vector3(_position, transform.position.y, transform.position.z);
-
-        _material.color = !GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
 
         ProcessInput();
 
@@ -66,11 +66,18 @@ public class StrikerController : MonoBehaviour
     {
         Vector2 moveRaw = (GameManager.Instance.GameState.FirstHalf ? firstHalfAction : secondHalfAction)
             .ReadValue<Vector2>();
-        float horMove = moveRaw.x;
-        if (moveRaw != Vector2.zero)
+
+        if (!GameManager.Instance.RoundStarted)
         {
-            Debug.Log("Move Input: " + moveRaw);
+            if (moveRaw != Vector2.zero && !GameManager.Instance.GameState.RoundEnd)
+            {
+                GameManager.Instance.RoundStarted = true;
+            } else {
+                return;
+            }
         }
+        
+        float horMove = moveRaw.x;
 
         if (_holdingBall)
         {
@@ -102,6 +109,7 @@ public class StrikerController : MonoBehaviour
     {
         ResetBallToStriker();
         transform.position = _initialPosition;
+        _position = _initialPosition.x;
     }
 
     public void ResetBallToStriker()

@@ -42,6 +42,8 @@ public class GoalieController : MonoBehaviour
 
     private void Update()
     {
+        _material.color = GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
+        
         Vector2 moveRaw = (GameManager.Instance.GameState.FirstHalf ? firstHalfAction : secondHalfAction)
             .ReadValue<Vector2>();
         float horMove = moveRaw.x;
@@ -49,12 +51,14 @@ public class GoalieController : MonoBehaviour
         {
             Debug.Log("Move Input: " + moveRaw);
         }
+        
+        if (!GameManager.Instance.RoundStarted || GameManager.Instance.GameState.RoundEnd)
+            return;
 
         _targetPosition += horMove * 30.0f * Time.deltaTime;
         _targetPosition = Mathf.Clamp(_targetPosition, -Constants.PLAYER_HOR_MAX, Constants.PLAYER_HOR_MAX);
         _position = Mathf.Lerp(_position, _targetPosition, 16.0f * Time.deltaTime);
         transform.position = new Vector3(_position, transform.position.y, transform.position.z);
-        _material.color = GameManager.Instance.GameState.FirstHalf ? Constants.YELLOW_COLOR : Constants.BLUE_COLOR;
     }
 
     public void ResetState()
