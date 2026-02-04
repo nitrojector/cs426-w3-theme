@@ -90,7 +90,7 @@ public class StrikerController : MonoBehaviour
 
         if (_holdingBall)
         {
-            _targetPosition += horMove * 30.0f * Time.deltaTime;
+            _targetPosition += horMove * 20.0f * Time.deltaTime;
         }
         else
         {

@@ -52,7 +52,7 @@ public class GoalieController : MonoBehaviour
         if (!GameManager.Instance.RoundStarted || GameManager.Instance.GameState.RoundEnd)
             return;
 
-        _targetPosition += horMove * 30.0f * Time.deltaTime;
+        _targetPosition += horMove * 20.0f * Time.deltaTime;
         _targetPosition = Mathf.Clamp(_targetPosition, -Constants.PLAYER_HOR_MAX, Constants.PLAYER_HOR_MAX);
         _position = Mathf.Lerp(_position, _targetPosition, 16.0f * Time.deltaTime);
         transform.position = new Vector3(_position, transform.position.y, transform.position.z);
