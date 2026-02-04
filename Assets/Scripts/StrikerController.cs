@@ -85,6 +85,9 @@ public class StrikerController : MonoBehaviour
 
         float horMove = moveRaw.x;
 
+        if (!GameManager.Instance.RoundStarted || GameManager.Instance.GameState.RoundEnd)
+            return;
+
         if (_holdingBall)
         {
             _targetPosition += horMove * 30.0f * Time.deltaTime;
